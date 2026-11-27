@@ -5,7 +5,7 @@ Five parallel studies are running, one per encoder stage:
 | File | Stage | Status |
 |---|---|---|
 | `01_PREDICTION.md` | ME, subpel, refs, weighted pred, B-frames, lookahead, intra | running |
-| `02_RD_TRANSFORM_QUANT.md` | mode RD, lambda, trellis/QNS, quantizer, 8x8 DCT | running |
+| `02_RD_TRANSFORM_QUANT.md` | mode RD, lambda, trellis/QNS, quantizer, 8x8 DCT | **DONE** — top ideas: VIF-proxy distortion λ (+0.2-0.5, 0.1-0.4 ms, no QP change so ABR cannot re-spend), subband QNS (+0.2-0.4, already prototyped and blocked), Cauchy bit estimator (+0.05-0.2). Realistic stack +0.4-0.9 VMAF, not enough alone |
 | `03_ENTROPY.md` | CAVLC/CABAC, bins, carry, EPB, parallel entropy | running |
 | `04_FILTERING_POSTPROCESS.md` | deblock, SAO-like, neural post-filter, VMAF vs genuine quality | running |
 | `05_RATE_CONTROL.md` | ABR, qcomp, MB-tree, lookahead, offline QP planning | **DONE** — offline probe-calibrated QP plan ranked #1; cited −17 % to −32 % bitrate savings; estimated +2.9 VMAF game / +8.1 trailer, ~132-140 fps unchanged |
