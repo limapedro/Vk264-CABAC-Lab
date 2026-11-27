@@ -1,0 +1,241 @@
+{
+  "source": "E:\\__PROJECTS__\\Vk264\\build\\native1080_300.yuv",
+  "frames": 1,
+  "width": 1920,
+  "height": 1080,
+  "preset": "slow",
+  "qp": 18,
+  "repeats": 7,
+  "ffmpeg": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe",
+  "note": "standalone x264.exe absent; libx264 via FFmpeg -x264-params",
+  "runs": [
+    {
+      "threads": 1,
+      "slices": 1,
+      "constrained_intra": 0,
+      "params": "slices=1:keyint=1:scenecut=0:constrained-intra=0",
+      "wall_ms": [
+        806.59,
+        857.18,
+        660.14,
+        714.01,
+        815.83,
+        609.75,
+        521.85
+      ],
+      "median_ms": 714.01,
+      "bytes": 112383,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 1 -x264-params slices=1:keyint=1:scenecut=0:constrained-intra=0 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t1_s1_ci0.h264"
+    },
+    {
+      "threads": 1,
+      "slices": 1,
+      "constrained_intra": 1,
+      "params": "slices=1:keyint=1:scenecut=0:constrained-intra=1",
+      "wall_ms": [
+        499.2,
+        504.38,
+        530.97,
+        405.16,
+        175.02,
+        183.36,
+        854.51
+      ],
+      "median_ms": 499.2,
+      "bytes": 112383,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 1 -x264-params slices=1:keyint=1:scenecut=0:constrained-intra=1 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t1_s1_ci1.h264"
+    },
+    {
+      "threads": 1,
+      "slices": 34,
+      "constrained_intra": 0,
+      "params": "slices=34:keyint=1:scenecut=0:constrained-intra=0",
+      "wall_ms": [
+        713.9,
+        655.92,
+        622.29,
+        611.98,
+        314.91,
+        724.59,
+        820.11
+      ],
+      "median_ms": 655.92,
+      "bytes": 126231,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 1 -x264-params slices=34:keyint=1:scenecut=0:constrained-intra=0 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t1_s34_ci0.h264"
+    },
+    {
+      "threads": 1,
+      "slices": 34,
+      "constrained_intra": 1,
+      "params": "slices=34:keyint=1:scenecut=0:constrained-intra=1",
+      "wall_ms": [
+        743.8,
+        690.26,
+        828.6,
+        583.59,
+        810.18,
+        377.72,
+        793.74
+      ],
+      "median_ms": 743.8,
+      "bytes": 126231,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 1 -x264-params slices=34:keyint=1:scenecut=0:constrained-intra=1 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t1_s34_ci1.h264"
+    },
+    {
+      "threads": 1,
+      "slices": 68,
+      "constrained_intra": 0,
+      "params": "slices=68:keyint=1:scenecut=0:constrained-intra=0",
+      "wall_ms": [
+        609.48,
+        644.56,
+        702.17,
+        660.36,
+        673.57,
+        487.22,
+        171.56
+      ],
+      "median_ms": 644.56,
+      "bytes": 139008,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 1 -x264-params slices=68:keyint=1:scenecut=0:constrained-intra=0 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t1_s68_ci0.h264"
+    },
+    {
+      "threads": 1,
+      "slices": 68,
+      "constrained_intra": 1,
+      "params": "slices=68:keyint=1:scenecut=0:constrained-intra=1",
+      "wall_ms": [
+        161.05,
+        519.55,
+        739.34,
+        682.06,
+        833.26,
+        695.93,
+        354.34
+      ],
+      "median_ms": 682.06,
+      "bytes": 139008,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 1 -x264-params slices=68:keyint=1:scenecut=0:constrained-intra=1 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t1_s68_ci1.h264"
+    },
+    {
+      "threads": 12,
+      "slices": 1,
+      "constrained_intra": 0,
+      "params": "slices=1:keyint=1:scenecut=0:constrained-intra=0",
+      "wall_ms": [
+        987.36,
+        612.65,
+        1582.72,
+        1203.52,
+        1476.26,
+        561.72,
+        336.54
+      ],
+      "median_ms": 987.36,
+      "bytes": 112384,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 12 -x264-params slices=1:keyint=1:scenecut=0:constrained-intra=0 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t12_s1_ci0.h264"
+    },
+    {
+      "threads": 12,
+      "slices": 1,
+      "constrained_intra": 1,
+      "params": "slices=1:keyint=1:scenecut=0:constrained-intra=1",
+      "wall_ms": [
+        424.84,
+        333.4,
+        330.07,
+        386.99,
+        359.68,
+        452.93,
+        349.17
+      ],
+      "median_ms": 359.68,
+      "bytes": 112384,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 12 -x264-params slices=1:keyint=1:scenecut=0:constrained-intra=1 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t12_s1_ci1.h264"
+    },
+    {
+      "threads": 12,
+      "slices": 34,
+      "constrained_intra": 0,
+      "params": "slices=34:keyint=1:scenecut=0:constrained-intra=0",
+      "wall_ms": [
+        293.04,
+        172.74,
+        178.97,
+        1292.36,
+        1452.47,
+        381.26,
+        258.9
+      ],
+      "median_ms": 293.04,
+      "bytes": 126232,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 12 -x264-params slices=34:keyint=1:scenecut=0:constrained-intra=0 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t12_s34_ci0.h264"
+    },
+    {
+      "threads": 12,
+      "slices": 34,
+      "constrained_intra": 1,
+      "params": "slices=34:keyint=1:scenecut=0:constrained-intra=1",
+      "wall_ms": [
+        489.1,
+        637.41,
+        1252.65,
+        763.03,
+        364.33,
+        388.21,
+        342.67
+      ],
+      "median_ms": 489.1,
+      "bytes": 126232,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 12 -x264-params slices=34:keyint=1:scenecut=0:constrained-intra=1 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t12_s34_ci1.h264"
+    },
+    {
+      "threads": 12,
+      "slices": 68,
+      "constrained_intra": 0,
+      "params": "slices=68:keyint=1:scenecut=0:constrained-intra=0",
+      "wall_ms": [
+        385.53,
+        369.37,
+        341.94,
+        392.37,
+        444.8,
+        405.28,
+        456.3
+      ],
+      "median_ms": 392.37,
+      "bytes": 139009,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 12 -x264-params slices=68:keyint=1:scenecut=0:constrained-intra=0 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t12_s68_ci0.h264"
+    },
+    {
+      "threads": 12,
+      "slices": 68,
+      "constrained_intra": 1,
+      "params": "slices=68:keyint=1:scenecut=0:constrained-intra=1",
+      "wall_ms": [
+        362.34,
+        367.61,
+        414.59,
+        310.76,
+        399.06,
+        411.7,
+        317.33
+      ],
+      "median_ms": 367.61,
+      "bytes": 139009,
+      "idr_slice_nals": 0,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr1.yuv -frames:v 1 -an -c:v libx264 -preset slow -qp 18 -threads 12 -x264-params slices=68:keyint=1:scenecut=0:constrained-intra=1 -f h264 C:\\Users\\multi\\AppData\\Local\\Temp\\opencode\\slice_scale\\idr_scratch\\idr_t12_s68_ci1.h264"
+    }
+  ]
+}

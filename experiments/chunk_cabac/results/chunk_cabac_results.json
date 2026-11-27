@@ -1,0 +1,69 @@
+{
+  "design": "SPECULATIVE_HYBRID.md section 4 chunk-summary CABAC",
+  "all_byte_exact": true,
+  "streams": [
+    {"name": "state_driven_qp26_I_seed264", "bins": 4096, "bytes": 458, "all_chunk_sizes_exact": true, "chunk_sizes": [
+      {"byte_exact": "true", "carry_cross_chunk_edits": "48", "carry_in_variant_mismatches": "0", "chunk_size": "8", "chunked_bytes": "458", "chunks_with_no_local_bytes": "88", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "6.460938"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "30", "carry_in_variant_mismatches": "0", "chunk_size": "16", "chunked_bytes": "458", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "12.570312"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "10", "carry_in_variant_mismatches": "0", "chunk_size": "32", "chunked_bytes": "458", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "22.460938"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "5", "carry_in_variant_mismatches": "0", "chunk_size": "64", "chunked_bytes": "458", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "38.578125"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "1", "carry_in_variant_mismatches": "0", "chunk_size": "128", "chunked_bytes": "458", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "59.031250"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "0", "carry_in_variant_mismatches": "0", "chunk_size": "256", "chunked_bytes": "458", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "78.250000"}
+    ]},
+    {"name": "state_driven_qp18_P_seed777", "bins": 8192, "bytes": 895, "all_chunk_sizes_exact": true, "chunk_sizes": [
+      {"byte_exact": "true", "carry_cross_chunk_edits": "68", "carry_in_variant_mismatches": "0", "chunk_size": "8", "chunked_bytes": "895", "chunks_with_no_local_bytes": "182", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "5.969727"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "42", "carry_in_variant_mismatches": "0", "chunk_size": "16", "chunked_bytes": "895", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "11.794922"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "30", "carry_in_variant_mismatches": "0", "chunk_size": "32", "chunked_bytes": "895", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "22.429688"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "12", "carry_in_variant_mismatches": "0", "chunk_size": "64", "chunked_bytes": "895", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "36.203125"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "7", "carry_in_variant_mismatches": "0", "chunk_size": "128", "chunked_bytes": "895", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "56.921875"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "2", "carry_in_variant_mismatches": "0", "chunk_size": "256", "chunked_bytes": "895", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "75.843750"}
+    ]},
+    {"name": "structured_mb_type_cbp_residual", "bins": 6000, "bytes": 632, "all_chunk_sizes_exact": true, "chunk_sizes": [
+      {"byte_exact": "true", "carry_cross_chunk_edits": "70", "carry_in_variant_mismatches": "0", "chunk_size": "8", "chunked_bytes": "632", "chunks_with_no_local_bytes": "152", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "7.002667"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "41", "carry_in_variant_mismatches": "0", "chunk_size": "16", "chunked_bytes": "632", "chunks_with_no_local_bytes": "1", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "12.770667"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "25", "carry_in_variant_mismatches": "0", "chunk_size": "32", "chunked_bytes": "632", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "20.303191"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "13", "carry_in_variant_mismatches": "0", "chunk_size": "64", "chunked_bytes": "632", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "23.393617"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "8", "carry_in_variant_mismatches": "0", "chunk_size": "128", "chunked_bytes": "632", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "29.723404"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "4", "carry_in_variant_mismatches": "0", "chunk_size": "256", "chunked_bytes": "632", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "32.375000"}
+    ]},
+    {"name": "structured_residual_bypass_terminal", "bins": 12000, "bytes": 1289, "all_chunk_sizes_exact": true, "chunk_sizes": [
+      {"byte_exact": "true", "carry_cross_chunk_edits": "105", "carry_in_variant_mismatches": "0", "chunk_size": "8", "chunked_bytes": "1289", "chunks_with_no_local_bytes": "285", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "6.310000"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "62", "carry_in_variant_mismatches": "0", "chunk_size": "16", "chunked_bytes": "1289", "chunks_with_no_local_bytes": "3", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "12.590667"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "33", "carry_in_variant_mismatches": "0", "chunk_size": "32", "chunked_bytes": "1289", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "23.480000"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "14", "carry_in_variant_mismatches": "0", "chunk_size": "64", "chunked_bytes": "1289", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "32.015957"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "6", "carry_in_variant_mismatches": "0", "chunk_size": "128", "chunked_bytes": "1289", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "25.712766"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "2", "carry_in_variant_mismatches": "0", "chunk_size": "256", "chunked_bytes": "1289", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "0", "mean_distinct_contexts_per_chunk": "28.255319"}
+    ]},
+    {"name": "stress_250k_state_driven", "bins": 250000, "bytes": 26932, "all_chunk_sizes_exact": true, "chunk_sizes": [
+      {"byte_exact": "true", "carry_cross_chunk_edits": "2783", "carry_in_variant_mismatches": "0", "chunk_size": "8", "chunked_bytes": "26932", "chunks_with_no_local_bytes": "5870", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "6.567488"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "1570", "carry_in_variant_mismatches": "0", "chunk_size": "16", "chunked_bytes": "26932", "chunks_with_no_local_bytes": "32", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "13.128768"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "801", "carry_in_variant_mismatches": "0", "chunk_size": "32", "chunked_bytes": "26932", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "26.205299"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "405", "carry_in_variant_mismatches": "0", "chunk_size": "64", "chunked_bytes": "26932", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "52.078321"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "203", "carry_in_variant_mismatches": "0", "chunk_size": "128", "chunked_bytes": "26932", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "102.078813"},
+      {"byte_exact": "true", "carry_cross_chunk_edits": "101", "carry_in_variant_mismatches": "0", "chunk_size": "256", "chunked_bytes": "26932", "chunks_with_no_local_bytes": "0", "epb_exact_after_merge": "true", "max_outstanding_at_chunk_start": "1", "mean_distinct_contexts_per_chunk": "192.968270"}
+    ]}
+  ],
+  "timing": {
+    "chunked_ms_at_300k": "8.666863",
+    "chunked_ns_per_bin": "28.889543",
+    "chunked_ns_total": "7222385.714286",
+    "chunked_tsc_cycles_per_bin": "72.107511",
+    "combined_prefix_ms_at_300k": "2.626371",
+    "combined_prefix_ns_per_bin": "8.754571",
+    "combined_prefix_ns_total": "2188642.857143",
+    "combined_prefix_tsc_cycles_per_bin": "21.851455",
+    "context_only_ms_at_250k": "0.394286",
+    "context_only_ms_at_300k": "0.473143",
+    "context_only_ns_per_bin": "1.577143",
+    "context_only_ns_total": "394285.714286",
+    "context_only_tsc_cycles_per_bin": "3.940104",
+    "gpu_serial_combined_prefix_ms_at_300k_1p5ghz_same_cycles": "4.370291",
+    "gpu_serial_context_ms_at_300k_1p5ghz_same_cycles": "0.788021",
+    "serial_arithmetic_ms_at_300k": "2.446560",
+    "serial_arithmetic_ns_per_bin": "8.155200",
+    "serial_arithmetic_ns_total": "2038800.000000",
+    "serial_arithmetic_tsc_cycles_per_bin": "20.354088",
+    "stress_bins": "250000.000000",
+    "tsc_assumed_ghz": "2.500000"
+  }
+}
