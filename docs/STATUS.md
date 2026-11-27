@@ -34,6 +34,12 @@ Results in:
   117 ms measured IDR. **Evaluation: this is the most promising lab result —
   CPU reference prototype launched (`ses_de2ab9d72ffeYls67vGOkgB590`) to
   prove byte-exactness before any Vulkan work.**
+- notes/WPP_H264.md: WPP H264 DEAD END. Contexts reset per slice;
+  measured baseline 94.478 -> 94.039 VMAF with slices=68:constrained-intra=1;
+  all-intra isolates +5.6-7.5% bitrate cost. Row slices are legal but cost
+  ~6-8% bits and still couple through deblocking.
+- notes/SPECULATIVE_HYBRID.md evaluated: exact chunk-summary design promoted
+  to CPU reference prototype (agent 5, files under experiments/chunk_cabac/).
 - results/slice_scale/: in progress (agent 3).
 
 Parent-repo ABR fix agent (`ses_de2d0752affe5g5VSsbM249e0J`)
