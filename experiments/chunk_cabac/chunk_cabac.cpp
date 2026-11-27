@@ -338,7 +338,7 @@ static PrefixResult run_prefix(const std::vector<BinEvent>& bins, size_t chunk,
     r.touched_per_chunk.assign(nchunks, 0);
     ArithState a;
     auto ctx = ctx0;
-    std::vector<char> seen(NCTX, 0);
+    std::vector<int> seen(NCTX, 0);
     int gen = 0;
     for (size_t i = 0; i < bins.size(); ++i) {
         size_t k = i / chunk;
@@ -350,7 +350,7 @@ static PrefixResult run_prefix(const std::vector<BinEvent>& bins, size_t chunk,
         const BinEvent& be = bins[i];
         if (be.kind == DECISION) {
             light_decide(a, ctx.data(), be.ctx, be.bin, t);
-            if (seen[be.ctx] != gen) { seen[be.ctx] = (char)gen; r.touched_per_chunk[k]++; }
+            if (seen[be.ctx] != gen) { seen[be.ctx] = gen; r.touched_per_chunk[k]++; }
         } else if (be.kind == BYPASS) {
             light_bypass(a, be.bin);
         } else {
@@ -745,7 +745,7 @@ static StreamResult verify_stream(const std::string& name, const std::vector<Bin
     for (size_t cs : CHUNKS) {
         std::map<std::string, std::string> st;
         auto chunked = chunk_encode(bins, ctx0, t, cs, frame, &st);
-        auto sparse = chunk_encode_sparse(bins, ctx0, t, cs, frame, nullptr);
+        auto sparse = chunk_encode_sparse(bins, ctx0, t, cs, frame, &st);
         bool exact = chunked == serial.out;
         bool sparse_exact = sparse == serial.out;
         auto chunked_epb = insert_epb(chunked);
