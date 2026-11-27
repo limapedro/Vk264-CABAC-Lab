@@ -66,16 +66,17 @@ _INIT_CACHE: dict[tuple[bool, int], list[int]] = {}
 
 def load_init_tables(path: Path) -> None:
     src = path.read_text(encoding="utf-8", errors="replace")
-    for name, is_i in (("x264_cabac_context_init_I", True),
-                       ("x264_cabac_context_init_PB[2]", False)):
-        m = re.search(re.escape(name) + r"\[1024\]\[2\]\s*=\s*\{(.*?)\n\};", src, re.S)
+    specs = [
+        (r"x264_cabac_context_init_I\[1024\]\[2\]\s*=\s*\{(.*?)\};", True, 0),
+        (r"x264_cabac_context_init_PB\[3\]\[1024\]\[2\]\s*=\s*\{(.*?)\n\};", False, 1),
+    ]
+    for pattern, is_i, model in specs:
+        m = re.search(pattern, src, re.S)
         if not m:
-            # PB is declared as x264_cabac_context_init_PB[2][1024][2]
-            m = re.search(r"x264_cabac_context_init_PB\[2\]\[1024\]\[2\]\s*=\s*\{(.*?)\n\};", src, re.S)
-        if not m:
-            raise RuntimeError(f"cannot find {name}")
+            raise RuntimeError(f"cannot find table for {pattern}")
         vals = _numbers(m.group(1))
-        assert len(vals) >= 460 * 2, len(vals)
+        assert len(vals) >= (model + 1) * 1024 * 2, len(vals)
+        vals = vals[model * 1024 * 2:]
         for qp in range(52):
             state = []
             for j in range(460):
@@ -113,6 +114,9 @@ class Coder:
             self.outstanding += 1
             return None
         carry = out >> 8
+        # x264 cabac.c:89 patches the previously emitted byte in place.
+        if carry and self.pos > 0:
+            self.out[self.pos - 1] = (self.out[self.pos - 1] + carry) & 0xFF
         while self.outstanding > 0:
             self.out.append((carry - 1) & 0xFF)
             self.pos += 1
@@ -197,14 +201,77 @@ def serial_encode(bins, ctx0, tables, chunk: int):
     c = Coder()
     ctx = ctx0[:]
     snapshots = []
+    stats = {
+        "carry_cross_chunk": 0,
+        "chunks_with_no_byte": 0,
+        "chunks_with_pending_ff_at_start": 0,
+        "max_outstanding": 0,
+    }
+    emitted_in_chunk = 0
+    chunk_positions = []
     for i, (ci, b) in enumerate(bins):
+        k = i // chunk
         if i % chunk == 0:
             snapshots.append((c.low, c.rng, c.queue, c.outstanding, ctx[:]))
+            chunk_positions.append(c.pos)
+            emitted_in_chunk = 0
+            if c.outstanding > 0:
+                stats["chunks_with_pending_ff_at_start"] += 1
+        before_pos = c.pos
+        before_outstanding = c.outstanding
         if ci < 0:
-            c.bypass(b)
+            carry = c.bypass(b)
         else:
-            c.decide(ctx, ci, b, tables)
-    return c, snapshots
+            carry = c.decide(ctx, ci, b, tables)
+        stats["max_outstanding"] = max(stats["max_outstanding"], c.outstanding)
+        if c.pos > before_pos:
+            if emitted_in_chunk == 0 and carry:
+                # The first byte emitted by this chunk has a carry that
+                # retroactively edits the last byte written by the previous
+                # chunk (this is the cross-chunk carry dependency).
+                stats["carry_cross_chunk"] += 1
+            emitted_in_chunk += c.pos - before_pos
+    chunk_positions.append(c.pos)
+    stats["chunks_with_no_byte"] = sum(
+        chunk_positions[k] == chunk_positions[k + 1]
+        for k in range(len(snapshots))
+    )
+    return c, snapshots, stats
+
+
+def verify_chunk_merge(bins, snapshots, tables, chunk: int) -> dict:
+    """Encode each 64-bin chunk in isolation and merge with a 1-bit carry.
+
+    This demonstrates that the ONLY byte-stream dependency between chunks is a
+    single carry bit that patches the previous byte; all other arithmetic state
+    can be checkpointed as (low, range, queue, outstanding, contexts).
+    """
+    merged = bytearray()
+    carry_cross = 0
+    for k, (low, rng, queue, outstanding, true_ctx) in enumerate(snapshots):
+        ctx = true_ctx[:]
+        c = Coder(low, rng, queue, outstanding, 0, bytearray())
+        local_carry_out = None
+        for ci, b in bins[k * chunk:min((k + 1) * chunk, len(bins))]:
+            before = c.pos
+            if ci < 0:
+                carry = c.bypass(b)
+            else:
+                carry = c.decide(ctx, ci, b, tables)
+            if carry is not None and local_carry_out is None and c.pos > before:
+                local_carry_out = carry
+        if local_carry_out and merged:
+            merged[-1] = (merged[-1] + 1) & 0xFF
+            carry_cross += 1
+        merged.extend(c.out)
+    serial, _, _ = serial_encode(bins, snapshots[0][4], tables, chunk)
+    return {
+        "chunk_bins": chunk,
+        "merged_bytes": len(merged),
+        "serial_bytes": len(serial.out),
+        "bit_exact": bytes(merged) == bytes(serial.out),
+        "cross_chunk_carry_edits": carry_cross,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -265,28 +332,36 @@ def main() -> None:
     tables = load_tables(args.tables)
     bins = make_bins(args.bins, args.qp, tables, args.seed)
     ctx0 = initial_contexts(args.qp, tables, True)
-    coder, snapshots = serial_encode(bins, ctx0, tables, args.chunk)
 
     report = {
         "source": {
             "tables": str(args.tables),
             "bin_stream": "synthetic x264-state-driven (no bin-level decoder available)",
             "bins": args.bins,
-            "chunk_bins": args.chunk,
             "qp": args.qp,
             "seed": args.seed,
         },
-        "serial": {
-            "bytes": len(coder.out),
-            "outstanding_at_end": coder.outstanding,
-            "sha256_of_bytes": __import__("hashlib").sha256(coder.out).hexdigest(),
-        },
         "experiments": [],
     }
-    for mode, cp in (("naive_init", 0), ("stale", 1), ("stale", 2),
-                     ("stale", 4), ("stale", 8), ("stale", 16)):
-        report["experiments"].append(count_conflicts(
-            bins, snapshots, args.chunk, ctx0, mode, cp))
+    for chunk in (args.chunk, 8, 16, 32, 128):
+        if chunk in [e["chunk_bins"] for e in report["experiments"]]:
+            continue
+        coder, snapshots, stats = serial_encode(bins, ctx0, tables, chunk)
+        entry = {
+            "chunk_bins": chunk,
+            "serial": {
+                "bytes": len(coder.out),
+                "outstanding_at_end": coder.outstanding,
+                "sha256_of_bytes": __import__("hashlib").sha256(coder.out).hexdigest(),
+            },
+            "carry_and_byte_stats": stats,
+            "chunk_merge_verification": verify_chunk_merge(bins, snapshots, tables, chunk),
+            "conflicts": [],
+        }
+        for mode, cp in (("naive_init", 0), ("stale", 1), ("stale", 4), ("stale", 16)):
+            entry["conflicts"].append(count_conflicts(
+                bins, snapshots, chunk, ctx0, mode, cp))
+        report["experiments"].append(entry)
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=2), encoding="utf-8")

@@ -1,0 +1,12 @@
+{
+  "source": "E:\\__PROJECTS__\\Vk264\\build\\audit_base_6000\\wx264-slow.h264 (read only)",
+  "tool": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffprobe.exe -count_frames",
+  "width": 1920,
+  "height": 1080,
+  "frames": 60,
+  "file_bytes": 1054160,
+  "bytes_per_frame": 17569.3,
+  "bits_per_frame_at_60fps": 140554,
+  "estimated_bins_per_frame": "0.16-0.25 M (using 9-14 bins/byte from x264 CABAC-state-driven simulator at QP 26)",
+  "note": "Used only for order-of-magnitude GPU/CPU cost estimates; no bin-level trace was extracted from this stream."
+}

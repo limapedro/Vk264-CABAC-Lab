@@ -1,0 +1,326 @@
+{
+  "source": {
+    "tables": "E:\\__PROJECTS__\\Vk264\\x264-vulkan\\common\\tables.c",
+    "bin_stream": "synthetic x264-state-driven (no bin-level decoder available)",
+    "bins": 4096,
+    "qp": 26,
+    "seed": 264
+  },
+  "experiments": [
+    {
+      "chunk_bins": 64,
+      "serial": {
+        "bytes": 454,
+        "outstanding_at_end": 0,
+        "sha256_of_bytes": "0bbe75c70a46f91558bcb1e9cf7c7279ac11784f59639a8372a461bee60621ac"
+      },
+      "carry_and_byte_stats": {
+        "carry_cross_chunk": 3,
+        "chunks_with_no_byte": 0,
+        "chunks_with_pending_ff_at_start": 1,
+        "max_outstanding": 1
+      },
+      "chunk_merge_verification": {
+        "chunk_bins": 64,
+        "merged_bytes": 454,
+        "serial_bytes": 454,
+        "bit_exact": true,
+        "cross_chunk_carry_edits": 3
+      },
+      "conflicts": [
+        {
+          "mode": "naive_init",
+          "checkpoint_chunks": null,
+          "chunks": 64,
+          "context_conflicts": 63,
+          "arith_conflicts": 63,
+          "context_conflict_rate": 0.9844,
+          "arith_conflict_rate": 0.9844,
+          "mean_distinct_contexts_per_chunk": 39.69
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 1,
+          "chunks": 64,
+          "context_conflicts": 63,
+          "arith_conflicts": 63,
+          "context_conflict_rate": 0.9844,
+          "arith_conflict_rate": 0.9844,
+          "mean_distinct_contexts_per_chunk": 39.69
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 4,
+          "chunks": 64,
+          "context_conflicts": 63,
+          "arith_conflicts": 63,
+          "context_conflict_rate": 0.9844,
+          "arith_conflict_rate": 0.9844,
+          "mean_distinct_contexts_per_chunk": 39.69
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 16,
+          "chunks": 64,
+          "context_conflicts": 63,
+          "arith_conflicts": 63,
+          "context_conflict_rate": 0.9844,
+          "arith_conflict_rate": 0.9844,
+          "mean_distinct_contexts_per_chunk": 39.69
+        }
+      ]
+    },
+    {
+      "chunk_bins": 8,
+      "serial": {
+        "bytes": 454,
+        "outstanding_at_end": 0,
+        "sha256_of_bytes": "0bbe75c70a46f91558bcb1e9cf7c7279ac11784f59639a8372a461bee60621ac"
+      },
+      "carry_and_byte_stats": {
+        "carry_cross_chunk": 35,
+        "chunks_with_no_byte": 94,
+        "chunks_with_pending_ff_at_start": 5,
+        "max_outstanding": 1
+      },
+      "chunk_merge_verification": {
+        "chunk_bins": 8,
+        "merged_bytes": 454,
+        "serial_bytes": 454,
+        "bit_exact": true,
+        "cross_chunk_carry_edits": 35
+      },
+      "conflicts": [
+        {
+          "mode": "naive_init",
+          "checkpoint_chunks": null,
+          "chunks": 512,
+          "context_conflicts": 508,
+          "arith_conflicts": 511,
+          "context_conflict_rate": 0.9922,
+          "arith_conflict_rate": 0.998,
+          "mean_distinct_contexts_per_chunk": 6.33
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 1,
+          "chunks": 512,
+          "context_conflicts": 201,
+          "arith_conflicts": 511,
+          "context_conflict_rate": 0.3926,
+          "arith_conflict_rate": 0.998,
+          "mean_distinct_contexts_per_chunk": 6.33
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 4,
+          "chunks": 512,
+          "context_conflicts": 431,
+          "arith_conflicts": 511,
+          "context_conflict_rate": 0.8418,
+          "arith_conflict_rate": 0.998,
+          "mean_distinct_contexts_per_chunk": 6.33
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 16,
+          "chunks": 512,
+          "context_conflicts": 507,
+          "arith_conflicts": 511,
+          "context_conflict_rate": 0.9902,
+          "arith_conflict_rate": 0.998,
+          "mean_distinct_contexts_per_chunk": 6.33
+        }
+      ]
+    },
+    {
+      "chunk_bins": 16,
+      "serial": {
+        "bytes": 454,
+        "outstanding_at_end": 0,
+        "sha256_of_bytes": "0bbe75c70a46f91558bcb1e9cf7c7279ac11784f59639a8372a461bee60621ac"
+      },
+      "carry_and_byte_stats": {
+        "carry_cross_chunk": 20,
+        "chunks_with_no_byte": 0,
+        "chunks_with_pending_ff_at_start": 3,
+        "max_outstanding": 1
+      },
+      "chunk_merge_verification": {
+        "chunk_bins": 16,
+        "merged_bytes": 454,
+        "serial_bytes": 454,
+        "bit_exact": true,
+        "cross_chunk_carry_edits": 20
+      },
+      "conflicts": [
+        {
+          "mode": "naive_init",
+          "checkpoint_chunks": null,
+          "chunks": 256,
+          "context_conflicts": 255,
+          "arith_conflicts": 255,
+          "context_conflict_rate": 0.9961,
+          "arith_conflict_rate": 0.9961,
+          "mean_distinct_contexts_per_chunk": 12.2
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 1,
+          "chunks": 256,
+          "context_conflicts": 222,
+          "arith_conflicts": 255,
+          "context_conflict_rate": 0.8672,
+          "arith_conflict_rate": 0.9961,
+          "mean_distinct_contexts_per_chunk": 12.2
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 4,
+          "chunks": 256,
+          "context_conflicts": 255,
+          "arith_conflicts": 255,
+          "context_conflict_rate": 0.9961,
+          "arith_conflict_rate": 0.9961,
+          "mean_distinct_contexts_per_chunk": 12.2
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 16,
+          "chunks": 256,
+          "context_conflicts": 255,
+          "arith_conflicts": 255,
+          "context_conflict_rate": 0.9961,
+          "arith_conflict_rate": 0.9961,
+          "mean_distinct_contexts_per_chunk": 12.2
+        }
+      ]
+    },
+    {
+      "chunk_bins": 32,
+      "serial": {
+        "bytes": 454,
+        "outstanding_at_end": 0,
+        "sha256_of_bytes": "0bbe75c70a46f91558bcb1e9cf7c7279ac11784f59639a8372a461bee60621ac"
+      },
+      "carry_and_byte_stats": {
+        "carry_cross_chunk": 8,
+        "chunks_with_no_byte": 0,
+        "chunks_with_pending_ff_at_start": 2,
+        "max_outstanding": 1
+      },
+      "chunk_merge_verification": {
+        "chunk_bins": 32,
+        "merged_bytes": 454,
+        "serial_bytes": 454,
+        "bit_exact": true,
+        "cross_chunk_carry_edits": 8
+      },
+      "conflicts": [
+        {
+          "mode": "naive_init",
+          "checkpoint_chunks": null,
+          "chunks": 128,
+          "context_conflicts": 127,
+          "arith_conflicts": 127,
+          "context_conflict_rate": 0.9922,
+          "arith_conflict_rate": 0.9922,
+          "mean_distinct_contexts_per_chunk": 22.8
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 1,
+          "chunks": 128,
+          "context_conflicts": 127,
+          "arith_conflicts": 127,
+          "context_conflict_rate": 0.9922,
+          "arith_conflict_rate": 0.9922,
+          "mean_distinct_contexts_per_chunk": 22.8
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 4,
+          "chunks": 128,
+          "context_conflicts": 127,
+          "arith_conflicts": 127,
+          "context_conflict_rate": 0.9922,
+          "arith_conflict_rate": 0.9922,
+          "mean_distinct_contexts_per_chunk": 22.8
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 16,
+          "chunks": 128,
+          "context_conflicts": 127,
+          "arith_conflicts": 127,
+          "context_conflict_rate": 0.9922,
+          "arith_conflict_rate": 0.9922,
+          "mean_distinct_contexts_per_chunk": 22.8
+        }
+      ]
+    },
+    {
+      "chunk_bins": 128,
+      "serial": {
+        "bytes": 454,
+        "outstanding_at_end": 0,
+        "sha256_of_bytes": "0bbe75c70a46f91558bcb1e9cf7c7279ac11784f59639a8372a461bee60621ac"
+      },
+      "carry_and_byte_stats": {
+        "carry_cross_chunk": 2,
+        "chunks_with_no_byte": 0,
+        "chunks_with_pending_ff_at_start": 0,
+        "max_outstanding": 1
+      },
+      "chunk_merge_verification": {
+        "chunk_bins": 128,
+        "merged_bytes": 454,
+        "serial_bytes": 454,
+        "bit_exact": true,
+        "cross_chunk_carry_edits": 2
+      },
+      "conflicts": [
+        {
+          "mode": "naive_init",
+          "checkpoint_chunks": null,
+          "chunks": 32,
+          "context_conflicts": 31,
+          "arith_conflicts": 31,
+          "context_conflict_rate": 0.9688,
+          "arith_conflict_rate": 0.9688,
+          "mean_distinct_contexts_per_chunk": 61.66
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 1,
+          "chunks": 32,
+          "context_conflicts": 31,
+          "arith_conflicts": 31,
+          "context_conflict_rate": 0.9688,
+          "arith_conflict_rate": 0.9688,
+          "mean_distinct_contexts_per_chunk": 61.66
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 4,
+          "chunks": 32,
+          "context_conflicts": 31,
+          "arith_conflicts": 31,
+          "context_conflict_rate": 0.9688,
+          "arith_conflict_rate": 0.9688,
+          "mean_distinct_contexts_per_chunk": 61.66
+        },
+        {
+          "mode": "stale",
+          "checkpoint_chunks": 16,
+          "chunks": 32,
+          "context_conflicts": 31,
+          "arith_conflicts": 31,
+          "context_conflict_rate": 0.9688,
+          "arith_conflict_rate": 0.9688,
+          "mean_distinct_contexts_per_chunk": 61.66
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+# Speculative checkpoint/rollback and CPU–GPU hybrid CABAC
+
+**Date:** 2026-11-27
+**Scope:** Can speculative checkpoint/rollback or a CPU–GPU hybrid parallelise
+H.264 CABAC enough to beat the measured **23 fps** GPU prototype?
+Parent repo `E:\__PROJECTS__\Vk264` was read only; all new files are in this lab.
+
+## TL;DR verdict
+
+**Naive speculative checkpoint/rollback is a dead end.** On an x264-state-driven
+bin stream, 63/64 (98.4 %) of 64-bin chunks conflict with a checkpoint even when
+the checkpoint is only *one chunk old*; rollback therefore re-encodes nearly
+everything serially and cannot beat 23 fps. The reason is structural: 460
+context states are touched continuously, so there is no small "3-state" summary
+analogous to the CAVLC emulation-prevention-byte (EPB) chunk interface.
+
+**The carry interface itself is tiny and cheap.** Exactly one bit crosses a
+chunk boundary (x264 `cabac.c:89` can only add 1 to the previously emitted byte;
+the FF run is held in `i_bytes_outstanding`). Our simulator verified **bit-exact**
+64-bin chunk merging with only this 1-bit patch: 3/64 chunks (4.7 %) needed a
+cross-chunk carry edit. So chunking is viable; *context prediction* is not.
+
+**The promising variant is exact, not speculative:** a serial (or per-context
+parallel) **context-only prefix**, then parallel arithmetic chunks with a
+1-bit carry merge. Cost estimate is <1 ms/frame versus the measured 117 ms/IDR
+prototype — comfortably above 23 fps, likely end-to-end limited by the existing
+~150 fps GPU loop.
+
+**CPU–GPU hybrid is not worth pursuing.** Moving bin encoding to CPU costs
+~0.25–0.7 ms/frame of single-core CABAC plus ~0.04–0.1 ms of PCIe/sync; it buys
+no throughput over x264-slow (75–105 fps whole encode on this machine) and
+breaks GPU residency.
+
+---
+
+## 1. Exact CABAC state chain and the minimal checkpoint
+
+Source: `E:\__PROJECTS__\Vk264\x264-vulkan\common\cabac.c:53-181`,
+`common/cabac.h:30-52` (read only). Verbatim structure fields at
+`cabac.h:33-48`:
+
+```c
+int i_low; int i_range; int i_queue; int i_bytes_outstanding;
+uint8_t *p_start, *p, *p_end;
+ALIGNED_64(int f8_bits_encoded);   // bit-cost estimator only
+uint8_t state[1024];               // 460 used for 4:2:0
+```
+
+Per-bin chain (lines 113–125): `state[i_ctx]` selects the LPS estimate via
+`range_lps[state>>1][(range>>6)-4]`; `range` shrinks; `low += range` on LPS;
+`state[i_ctx] = transition[state][b]`; then renormalisation shifts
+`range`, `low`, `queue` and calls `putbyte`.
+
+`putbyte` (69–99): emits when `queue >= 0`; `out = low >> (queue+10)`;
+`low &= (0x400<<queue)-1`; `queue -= 8`. If `out == 0xFF`, it is deferred in
+`i_bytes_outstanding`. Otherwise `carry = out >> 8` can **retroactively modify
+`p[-1]`** (line 89) and flush the deferred FF run as `carry-1` bytes. The source
+comments (83–88) guarantee carry cannot propagate further than one byte and
+cannot go before the slice header.
+
+`x264_cabac_encode_flush` (165–183) shows the same pattern at slice end.
+
+### Minimal checkpoint to resume at bin *N*
+
+| Field | Bytes | Needed? | Why |
+|---|---:|---|---|
+| `i_range` | 4 | yes | selects LPS LUT entry each bin |
+| `i_queue` | 4 | yes | pending-bit counter; may be negative (−9 at start) |
+| `i_low` | 4 | yes | pending arithmetic bits, masked to `2^(10+queue)` after each emission |
+| `i_bytes_outstanding` | 4 | yes | deferred 0xFF run; its value depends on the next carry |
+| last emitted byte | 1 | yes | carry at `cabac.c:89` patches it; replaced by a 1-bit carry summary in a chunked design |
+| `state[460]` | 460 | yes | context model; **this is the real coupling** |
+| `p` / `p_start` / `p_end` | 24 | no | output cursor/bounds only if each chunk owns a private buffer |
+| `f8_bits_encoded` | 4 | no | only used by the bit-cost estimator, not the bitstream |
+
+Dense checkpoint = **476 bytes/chunk** (460 + 16 + 1 ≈ 477). Sparse
+checkpointing of only contexts touched in the chunk reduces the context part,
+but the *true* states must still be obtained for those contexts — which is
+exactly the serial dependency that defeats prediction.
+
+**Comparison with the CAVLC EPB pattern.** CAVLC emulation prevention depends
+on the previous two bytes (0x00 0x00 xx), so a chunk needs a 3-state incoming
+summary (0, 1 or 2 preceding zeros). CABAC's byte dependency is only the single
+carry bit above, plus the FF-run length already encoded in
+`i_bytes_outstanding`. The analogous "incoming states" are therefore **2**
+(carry-in 0 or 1), not 3 — cheap. The expensive part, absent from CAVLC, is the
+460-byte context vector.
+
+---
+
+## 2. Simulator: conflict counts
+
+Files: `experiments/speculative_conflicts.py`,
+`results/speculative_conflicts.json`, `results/stream_stats.json`.
+
+Method: standalone Python port of `x264_cabac_encode_init_core`, `putbyte`,
+`renorm`, `decision`, `bypass`, `terminal` and flush, using the **numeric tables
+read read-only from the parent's `common/tables.c`** (no parent source copied
+into the lab). Bin stream: 4096 bins at QP 26, generated by sampling from x264's
+own transition table with a realistic mix of H.264 context classes (mb_type,
+CBP, chroma, significant-coeff, last-coeff, coeff-level; ~18 % bypass).
+This is a **state-driven synthetic stream, not a decoded bitstream**: neither
+ffmpeg (`trace_headers`, `-loglevel trace`) nor the x264 CLI exposes CABAC bins,
+so a real bin-level trace was not obtainable without building an instrumented
+x264. The measured conflict rates should be read as order-of-magnitude, not as
+a trace of `wx264-slow.h264`.
+
+Key results (4096 bins, 64-bin chunks):
+
+| Model | Conflict rate | Note |
+|---|---:|---|
+| contexts reset to QP init at chunk start | **98.4 %** (63/64) | naive speculation |
+| contexts from previous chunk checkpoint | **98.4 %** (63/64) | even 1 chunk stale is useless at 64 bins |
+| arithmetic state from init | 98.4 % | `low/range/queue/outstanding` all wrong |
+
+Chunk-size sweep (same stream):
+
+| Chunk | Contexts touched/chunk | Conflict, naive | Conflict, 1-chunk stale | Cross-chunk carries |
+|---:|---:|---:|---:|---:|
+| 8 | 6.3 | 99.2 % | **39.3 %** | 35/512 (6.8 %) |
+| 16 | 12.2 | 99.6 % | 86.7 % | 20/256 (7.8 %) |
+| 32 | 22.8 | 99.2 % | 99.2 % | 8/128 (6.3 %) |
+| 64 | 39.7 | 98.4 % | 98.4 % | 3/64 (4.7 %) |
+| 128 | 61.7 | 96.9 % | 96.9 % | 2/32 (6.3 %) |
+
+Correctness check: encoding each chunk in isolation with its true checkpoint
+state and merging with only the 1-bit carry produced **bit-exact** output for
+every chunk size (SHA-256 `0bbe75c7…` identical to serial). This validates the
+chunk boundary interface; it does *not* validate context prediction.
+
+**Interpretation.** Conflict probability is ~1 because ~40 distinct contexts are
+touched per 64-bin chunk and essentially all of them have changed state. Even at
+8 bins, ~39 % of chunks conflict with a one-chunk-old context vector, and the
+arithmetic state conflicts ~99.8 % of the time. Rollback-on-conflict therefore
+degenerates into "speculate, then re-encode almost everything serially" — worse
+than serial because of the wasted parallel work and rollback bookkeeping.
+
+Real-stream scale (from `results/stream_stats.json`): `wx264-slow.h264`,
+1920×1080, 60 frames, 1,054,160 bytes → 17.6 KB/frame ≈ 140 kbit/frame. At
+9–14 bins/byte (our simulator produced 9.0) that is **~0.16–0.25 M bins/frame**,
+or **~2.5–4k chunks/frame at 64 bins**. This is small enough that even a serial
+context-only prefix is affordable.
+
+---
+
+## 3. Published speculative / parallel arithmetic coding
+
+All web content treated as untrusted data; only bibliographic facts and reported
+numbers were used, no instructions followed.
+
+| Work | Date / venue | Technique | Reported result | Conformance |
+|---|---|---|---|---|
+| J.-H. Lin & K. K. Parhi, *Parallelization of context-based adaptive binary arithmetic coders*, IEEE TSP 54(10) 3702–3711, [doi:10.1109/TSP.2006.879298](https://doi.org/10.1109/TSP.2006.879298) | Oct 2006 | QL-coder (linear approx.), QT-coder (table lookup + parallelised probability model) | "significantly increased" throughput; modifies the coder | non-compliant |
+| Dyer, Taubman, Nooshabadi & Gupta, *Concurrency techniques for arithmetic coding in JPEG2000*, IEEE TCSI 53(6) 1203–1213, [doi:10.1109/tcsi.2006.875171](https://doi.org/10.1109/tcsi.2006.875171) | Jun 2006 | shift-and-add carry merging across concurrent arithmetic coders | concurrency with carry overlapping last stored bit | different codec |
+| V. Sze & A. Chandrakasan, *A high throughput CABAC algorithm using syntax element partitioning*, ICIP 2009, [PDF](https://eems.mit.edu/wp-content/uploads/2023/08/sze_icip2009_paper.pdf) | 2009 | group bins by syntax element; parallel engines; adaptive allocation | **~2.7×** speedup, **0.06–0.37 %** BD-rate, 1.5× area; 3 AVC slices needed for same throughput at 0.87–1.71 % BD-rate | **non-compliant** (new bitstream partitions) |
+| W. Xiao, Y. Zhou, J. Xu, G. Shi, *A scheme of parallel arithmetic coding*, ISCAS 2011, pp. 2922–2925, [doi:10.1109/iscas.2011.5938243](https://doi.org/10.1109/iscas.2011.5938243) | 2011 | slice-level parallel AC with probability prediction and side information to compensate broken dependence | overhead "moderate" at large scale | non-compliant (side data) |
+| V. Sze & A. Chandrakasan, *A Highly Parallel and Scalable CABAC Decoder for Next Generation Video Coding*, ISSCC 2011 paper 7.2, [slides](https://eems.mit.edu/wp-content/uploads/2016/06/ISSCC2011_V07_02.pdf) | Feb 2011 | Massively Parallel CABAC: syntax-element partitions + interleaved entropy slices | measured **3026 Mbins/s**, **80 peak / 24.11 avg bins/cycle**, >10× state of art; 65 nm | non-compliant |
+| V. Sze & A. Chandrakasan, *Joint Algorithm-Architecture Optimization of CABAC*, J. Signal Process. Syst. 69:239–252, [doi:10.1007/s11265-012-0678-2](https://doi.org/10.1007/s11265-012-0678-2), [PDF](https://eems.mit.edu/wp-content/uploads/2014/10/sze_jsps_2012.pdf) | published 26 May 2012 | MP-CABAC + subinterval reordering | **2.7–32.8× bins/cycle**, **0.25–6.84 %** coding loss; critical path −14–22 %; up to ~10× throughput at 0.82–2.57 % BD-rate | non-compliant |
+| P. Habermann, C. C. Chi, B. Juurlink et al., *A Bin-Based Bitstream Partitioning Approach for Parallel CABAC Decoding*, IPDPS 2019, [doi:10.1109/IPDPS.2019.00112](https://doi.org/10.1109/IPDPS.2019.00112) | May 2019 | distribute HEVC bins over 8 fixed bitstream partitions | up to **8.5×** decode speedup (6.2× max on one sequence), **9.2 %** extra cell area | non-compliant (multiple bitstreams) |
+| P. Habermann, B. Juurlink, C. C. Chi, M. Alvarez-Mesa, *Efficient Wavefront Parallel Processing for HEVC CABAC Decoding*, PDP 2020, [doi:10.1109/PDP50117.2020.00058](https://doi.org/10.1109/pdp50117.2020.00058) | Mar 2020 | WPP on CABAC | **1.06–1.55×** for plain WPP, up to **1.83×** with improvements | HEVC-compliant WPP, H.264 not |
+| F. Lin, K. Arunruangsirilert, H. Sun, J. Katto, *Recoil: Parallel rANS Decoding with Decoder-Adaptive Scalability*, ICPP 2023, [arXiv:2306.12141](https://arxiv.org/abs/2306.12141) | Jun 2023 | store intermediate (renormalised, small-bound) rANS states as metadata to start at arbitrary positions | comparable throughput to conventional partitioning, adaptive overhead | different codec; same checkpoint idea |
+| A. Said, H. Le, F. Farhadzadeh, *Bitstream Organization for Parallel Entropy Coding on Neural Network-based Video Codecs*, [arXiv:2312.00921](https://arxiv.org/html/2312.00921v1) | 1 Dec 2023 | entry-point index + bidirectional bitstreams + joint AC termination | overhead <1 % when streams >95 B, <0.1 % when >1200 B; termination 4.56→1.78 bits/stream | neural codecs only |
+
+**What this literature means for us.** Every high-speed result either (a) changes
+the bitstream layout (syntax-element partitions, entropy slices, multiple
+bitstreams) and is therefore not readable by standard H.264 decoders, or (b) is
+a hardware decoder with 45-way parallelism, not applicable to a GPU encoder.
+The only standard-compliant lever in H.264 is slice boundaries (reset of
+`range`, `low`, contexts — see `encoder.c:2791-2804` as noted in the lab README).
+The literature offers **no published exact speculative checkpoint/rollback
+scheme for standard-compliant H.264 CABAC**; Sze explicitly notes bin-level
+speculation yields only "low hundreds of Mbins/s" and increases power and
+critical path. That matches our simulator's conflict finding.
+
+---
+
+## 4. Concrete GPU scheme (exact, conformant)
+
+Design goal: keep one standard H.264 slice / CABAC stream, split the *work*
+inside the slice, and rely only on the 1-bit carry interface we verified.
+
+1. **Stage 0 – bin events (existing GPU syntax stage).** For each 64-bin chunk
+   emit `(chunk_id, ctx, bin, seq)` into an SSBO; ctx = −1 for bypass.
+   ~0.2–0.3 M events/frame at 4–8 B → 0.8–2.4 MB/frame.
+2. **Stage 1 – context prefix (the only serial dependency).**
+   *Minimum viable version:* one GPU thread walks all bins in order, doing
+   `ctx_state[c] = transition[state][bin]` only — no range/renorm/byte logic.
+   At ~0.2–0.3 M bins × 5–10 cycles and 1.5 GHz this is **0.7–2 ms/frame**.
+   *Optimised version:* one thread per context (460 threads ≈ 15 warps), each
+   scanning its own subsequence and writing a sparse `(chunk, ctx, state)`
+   record at each chunk boundary; hot residual contexts can be split by chunk
+   group with a second-level scan. This removes the O(N) serial lane.
+   This replaces 460-byte dense checkpoints with sparse records, and — crucially
+   — **there is no prediction and therefore no conflict/rollback**.
+3. **Stage 2 – parallel chunk arithmetic.** One warp per 64-bin chunk
+   (~2.5–4k chunks/frame at 1080p, enough to fill 1408 SM lanes with ~2–3
+   chunks per lane). Each warp runs x264's `decision`/`bypass` loop using stage-1
+   contexts, into a private byte buffer. It emits:
+   * local bytes (including deferred FF run parameterised on carry-in),
+   * `carry_out` (0/1) that patches the previous chunk's last byte,
+   * `range/queue/low_end` for debug/resumption.
+   `range` and `queue` evolution is independent of the incoming `low`; only the
+   first emitted byte can receive the incoming carry, so a 2-variant
+   (carry-in 0/1) summary is sufficient — the CABAC analogue of the CAVLC
+   "3 incoming zero states" trick.
+4. **Stage 3 – merge + EPB.** One thread (or parallel prefix over ~4k chunks)
+   applies each `carry_out` to the previous byte and concatenates. **Insert
+   emulation-prevention bytes only after the merge**, in a single pass over
+   ~18 KB/frame; doing it per chunk would reintroduce a preceding-byte
+   dependency. Cost <0.05 ms.
+5. **Stage 4 – flush** using `x264_cabac_encode_flush` semantics on the last
+   chunk.
+
+**Cost estimate:** stages 1–4 ≈ 0.2–2 ms/frame versus **117 ms** for the
+measured whole-frame IDR prototype (`README.md:31-32`). Even with 10× kernel
+and synchronisation overhead this is >10× faster than the prototype and would
+push CABAC well below the 16.7 ms/frame budget. Realistic end-to-end rate is
+then limited by the existing ~150 fps GPU loop, not CABAC.
+
+**Conflict rate:** zero by construction (no state prediction). If stage 1 is
+done serially it is ~0.7–2 ms, not a conflict but a real serial cost; that is
+still 50–150× better than the current serial *arithmetic* lane.
+
+**Risk:** stage 1's gather of per-context bin sequences and sparse context
+reconstruction is the hard part; bugs here silently corrupt the bitstream.
+Mitigation: ship the serial context-only prefix first (trivially exact), verify
+bit-exactness against the x264 path on the existing `verify_cabac_stream.py`
+fixtures, then optimise to the per-context scan.
+
+---
+
+## 5. CPU–GPU hybrid
+
+Option: GPU keeps syntax/RDO decisions, CPU does CABAC bin encoding.
+
+* **Transfer:** 0.2–0.3 M bins × 4 B ≈ 0.8–1.2 MB/frame → 48–72 MB/s at 60 fps.
+  PCIe 3.0 x16 (~12 GB/s usable) → ~0.005 ms/frame. Bandwidth is not a problem.
+* **Latency:** two synchronisations/frame (GPU→CPU bins, CPU completion) at
+  ~20–50 µs each → 0.04–0.1 ms/frame. Small versus 16.7 ms, but it forces
+  serialisation of pipeline stages and breaks GPU residency.
+* **Serial CPU CABAC:** 0.2–0.3 M bins × ~5–10 cycles/bin ÷ 4.2 GHz ≈
+  **0.25–0.7 ms/frame on one core** (x264's asm decision loop is far below
+  10 cycles/bin on modern x86). Even 4 frames in flight cost ~1–3 ms.
+* **Baseline:** x264-slow encodes the whole 1080p frame at **75–105 fps**
+  (9.5–13.3 ms/frame) on the 12-core i5-12400F. A single CABAC lane is a small
+  fraction of that.
+
+**Verdict: not worth pursuing.** The hybrid cannot exceed the CPU baseline by
+more than the GPU-side stages allow, adds a host round trip and a serial lane,
+and buys nothing that the exact GPU chunk scheme (§4) does not buy without
+leaving the device. It would be justified only if GPU CABAC were impossible,
+which the §4 cost estimate contradicts. Do not spend lab time on it.
+
+---
+
+## 6. Ranking (expected fps, estimates unless marked measured)
+
+| Rank | Approach | Expected fps @1080p | Quality | Risk | Notes |
+|---:|---|---:|---|---|---|
+| 1 | Frame-parallel (2–4 frames in flight, DPB/reorder) | **120–150** | neutral | high | Needs dual-reference ABI + reorder machinery; CABAC already reset per frame |
+| 2 | **Exact chunk-summary + context prefix (§4)** | **60–150** | neutral, bitstream conformant | medium-high engineering | Serial context prefix first; per-context scan later. Kills the 117 ms serial lane |
+| 3 | WPP rows (8 rows, constrained intra) | 60–120 | ~1–3 % BD-rate loss | medium-high | H.264 WPP is not standard; needs constrained intra prediction. HEVC WPP literature shows only 1.06–1.83× |
+| 4 | Naive speculative checkpoint/rollback | **≤23 (no gain)** | neutral | low but dead end | 98 % conflict rate; rollback re-encodes almost everything |
+| 5 | CPU–GPU hybrid | 25–40 | neutral | low benefit, high complexity | Loses GPU residency; worse than x264-slow's measured 75–105 fps |
+
+Measured facts used: GPU CAVLC loop 150–160 fps; slice-parallel CABAC ~23 fps,
+14 µs/MB, 117 ms/1080p IDR; x264-slow 75–105 fps — all from
+`E:\__PROJECTS__\Vk264-CABAC-Lab\README.md:9-15` and `docs/STATUS.md:6-9`.
+
+---
+
+## 7. Bottom line
+
+* The **minimal state** to resume CABAC is 16 B arithmetic state + 1 carry bit +
+  460 context bytes. Carry handling is cheap (1 bit; verified bit-exact chunk
+  merge); context state is the bottleneck.
+* **Speculation with prediction fails** — 98 % conflict at 64-bin chunks even
+  with one-chunk-old contexts; rollback cannot beat 23 fps.
+* **Exact chunking with a context prefix succeeds in principle** and is the
+  only conformant intra-slice parallelisation worth implementing. Estimated
+  CABAC time <2 ms/frame vs 117 ms today.
+* **CPU–GPU hybrid: clear dead end** relative to x264-slow.
+
+Recommended next experiment: implement the serial context-only prefix in the
+lab simulator on a larger (ideally real) bin stream, then port §4 stages 2–4
+to a standalone Vulkan compute prototype and measure against the 23 fps
+baseline. Do not pursue rollback or host offload.
