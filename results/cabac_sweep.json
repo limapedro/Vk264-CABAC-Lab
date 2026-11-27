@@ -1,0 +1,1217 @@
+[
+ {
+  "clip": "warzone_short",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2771.3,
+   "vmaf": 30.487
+  },
+  "cabac": {
+   "kbps": 2674.2,
+   "vmaf": 32.786
+  },
+  "dvmaf": 2.299,
+  "dkbps": -97.1
+ },
+ {
+  "clip": "warzone_short",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 7557.1,
+   "vmaf": 40.541
+  },
+  "cabac": {
+   "kbps": 7309.3,
+   "vmaf": 41.163
+  },
+  "dvmaf": 0.622,
+  "dkbps": -247.8
+ },
+ {
+  "clip": "warzone_short",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 9892.8,
+   "vmaf": 41.349
+  },
+  "cabac": {
+   "kbps": 9493.4,
+   "vmaf": 41.617
+  },
+  "dvmaf": 0.268,
+  "dkbps": -399.4
+ },
+ {
+  "clip": "warzone_short",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2736.0,
+   "vmaf": 30.111
+  },
+  "cabac": {
+   "kbps": 2592.9,
+   "vmaf": 32.517
+  },
+  "dvmaf": 2.406,
+  "dkbps": -143.1
+ },
+ {
+  "clip": "warzone_short",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 7417.2,
+   "vmaf": 40.509
+  },
+  "cabac": {
+   "kbps": 7158.6,
+   "vmaf": 41.058
+  },
+  "dvmaf": 0.549,
+  "dkbps": -258.6
+ },
+ {
+  "clip": "warzone_short",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 9740.9,
+   "vmaf": 41.351
+  },
+  "cabac": {
+   "kbps": 9370.3,
+   "vmaf": 41.565
+  },
+  "dvmaf": 0.214,
+  "dkbps": -370.6
+ },
+ {
+  "clip": "warzone_short",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2716.1,
+   "vmaf": 29.695
+  },
+  "cabac": {
+   "kbps": 2535.6,
+   "vmaf": 32.068
+  },
+  "dvmaf": 2.373,
+  "dkbps": -180.5
+ },
+ {
+  "clip": "warzone_short",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 7219.1,
+   "vmaf": 40.505
+  },
+  "cabac": {
+   "kbps": 6979.9,
+   "vmaf": 40.985
+  },
+  "dvmaf": 0.48,
+  "dkbps": -239.2
+ },
+ {
+  "clip": "warzone_short",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 9456.3,
+   "vmaf": 41.295
+  },
+  "cabac": {
+   "kbps": 9125.0,
+   "vmaf": 41.476
+  },
+  "dvmaf": 0.181,
+  "dkbps": -331.3
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2131.4,
+   "vmaf": 38.571
+  },
+  "cabac": {
+   "kbps": 2096.3,
+   "vmaf": 40.185
+  },
+  "dvmaf": 1.614,
+  "dkbps": -35.1
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 6278.6,
+   "vmaf": 44.944
+  },
+  "cabac": {
+   "kbps": 6192.0,
+   "vmaf": 45.403
+  },
+  "dvmaf": 0.459,
+  "dkbps": -86.6
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 8374.1,
+   "vmaf": 45.802
+  },
+  "cabac": {
+   "kbps": 8212.1,
+   "vmaf": 46.102
+  },
+  "dvmaf": 0.3,
+  "dkbps": -162.0
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2115.9,
+   "vmaf": 37.619
+  },
+  "cabac": {
+   "kbps": 2067.2,
+   "vmaf": 39.184
+  },
+  "dvmaf": 1.565,
+  "dkbps": -48.7
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 6217.7,
+   "vmaf": 44.749
+  },
+  "cabac": {
+   "kbps": 6087.5,
+   "vmaf": 45.217
+  },
+  "dvmaf": 0.468,
+  "dkbps": -130.2
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 8309.4,
+   "vmaf": 45.67
+  },
+  "cabac": {
+   "kbps": 8136.9,
+   "vmaf": 46.037
+  },
+  "dvmaf": 0.367,
+  "dkbps": -172.5
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2040.7,
+   "vmaf": 37.312
+  },
+  "cabac": {
+   "kbps": 1956.6,
+   "vmaf": 38.573
+  },
+  "dvmaf": 1.261,
+  "dkbps": -84.1
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5868.6,
+   "vmaf": 44.613
+  },
+  "cabac": {
+   "kbps": 5763.7,
+   "vmaf": 44.984
+  },
+  "dvmaf": 0.371,
+  "dkbps": -104.9
+ },
+ {
+  "clip": "fortnite4k",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7881.6,
+   "vmaf": 45.572
+  },
+  "cabac": {
+   "kbps": 7736.8,
+   "vmaf": 45.921
+  },
+  "dvmaf": 0.349,
+  "dkbps": -144.8
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1852.7,
+   "vmaf": 51.826
+  },
+  "cabac": {
+   "kbps": 1783.5,
+   "vmaf": 53.359
+  },
+  "dvmaf": 1.533,
+  "dkbps": -69.2
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5534.2,
+   "vmaf": 58.019
+  },
+  "cabac": {
+   "kbps": 5383.0,
+   "vmaf": 58.771
+  },
+  "dvmaf": 0.752,
+  "dkbps": -151.2
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7413.5,
+   "vmaf": 59.002
+  },
+  "cabac": {
+   "kbps": 7227.8,
+   "vmaf": 59.303
+  },
+  "dvmaf": 0.301,
+  "dkbps": -185.7
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1848.5,
+   "vmaf": 51.447
+  },
+  "cabac": {
+   "kbps": 1762.4,
+   "vmaf": 52.842
+  },
+  "dvmaf": 1.395,
+  "dkbps": -86.1
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5533.9,
+   "vmaf": 57.921
+  },
+  "cabac": {
+   "kbps": 5305.2,
+   "vmaf": 58.686
+  },
+  "dvmaf": 0.765,
+  "dkbps": -228.7
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7390.1,
+   "vmaf": 58.854
+  },
+  "cabac": {
+   "kbps": 7111.0,
+   "vmaf": 59.334
+  },
+  "dvmaf": 0.48,
+  "dkbps": -279.1
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1850.0,
+   "vmaf": 50.52
+  },
+  "cabac": {
+   "kbps": 1755.2,
+   "vmaf": 52.111
+  },
+  "dvmaf": 1.591,
+  "dkbps": -94.8
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5562.0,
+   "vmaf": 57.803
+  },
+  "cabac": {
+   "kbps": 5426.3,
+   "vmaf": 58.529
+  },
+  "dvmaf": 0.726,
+  "dkbps": -135.7
+ },
+ {
+  "clip": "yt_forza",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7427.1,
+   "vmaf": 58.783
+  },
+  "cabac": {
+   "kbps": 7273.1,
+   "vmaf": 59.263
+  },
+  "dvmaf": 0.48,
+  "dkbps": -154.0
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1887.7,
+   "vmaf": 29.354
+  },
+  "cabac": {
+   "kbps": 1961.8,
+   "vmaf": 33.044
+  },
+  "dvmaf": 3.69,
+  "dkbps": 74.1
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5689.8,
+   "vmaf": 38.85
+  },
+  "cabac": {
+   "kbps": 5877.5,
+   "vmaf": 39.565
+  },
+  "dvmaf": 0.715,
+  "dkbps": 187.7
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7707.8,
+   "vmaf": 39.667
+  },
+  "cabac": {
+   "kbps": 7865.1,
+   "vmaf": 39.876
+  },
+  "dvmaf": 0.209,
+  "dkbps": 157.3
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1867.8,
+   "vmaf": 28.655
+  },
+  "cabac": {
+   "kbps": 1915.2,
+   "vmaf": 32.289
+  },
+  "dvmaf": 3.634,
+  "dkbps": 47.4
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5643.8,
+   "vmaf": 38.72
+  },
+  "cabac": {
+   "kbps": 5809.0,
+   "vmaf": 39.544
+  },
+  "dvmaf": 0.824,
+  "dkbps": 165.2
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7791.7,
+   "vmaf": 39.648
+  },
+  "cabac": {
+   "kbps": 7833.9,
+   "vmaf": 39.873
+  },
+  "dvmaf": 0.225,
+  "dkbps": 42.2
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1860.4,
+   "vmaf": 28.87
+  },
+  "cabac": {
+   "kbps": 1878.6,
+   "vmaf": 31.881
+  },
+  "dvmaf": 3.011,
+  "dkbps": 18.2
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5781.1,
+   "vmaf": 38.984
+  },
+  "cabac": {
+   "kbps": 5787.1,
+   "vmaf": 39.506
+  },
+  "dvmaf": 0.522,
+  "dkbps": 6.0
+ },
+ {
+  "clip": "yt_sport",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7620.3,
+   "vmaf": 39.642
+  },
+  "cabac": {
+   "kbps": 7634.8,
+   "vmaf": 39.862
+  },
+  "dvmaf": 0.22,
+  "dkbps": 14.5
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1824.5,
+   "vmaf": 35.109
+  },
+  "cabac": {
+   "kbps": 1785.0,
+   "vmaf": 37.067
+  },
+  "dvmaf": 1.958,
+  "dkbps": -39.5
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5545.8,
+   "vmaf": 41.303
+  },
+  "cabac": {
+   "kbps": 5452.5,
+   "vmaf": 41.634
+  },
+  "dvmaf": 0.331,
+  "dkbps": -93.3
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7437.0,
+   "vmaf": 41.843
+  },
+  "cabac": {
+   "kbps": 7335.4,
+   "vmaf": 42.109
+  },
+  "dvmaf": 0.266,
+  "dkbps": -101.6
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1849.8,
+   "vmaf": 33.351
+  },
+  "cabac": {
+   "kbps": 1786.4,
+   "vmaf": 36.708
+  },
+  "dvmaf": 3.357,
+  "dkbps": -63.4
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5534.4,
+   "vmaf": 41.167
+  },
+  "cabac": {
+   "kbps": 5418.5,
+   "vmaf": 41.703
+  },
+  "dvmaf": 0.536,
+  "dkbps": -115.9
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7362.5,
+   "vmaf": 41.83
+  },
+  "cabac": {
+   "kbps": 7286.3,
+   "vmaf": 42.145
+  },
+  "dvmaf": 0.315,
+  "dkbps": -76.2
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1764.8,
+   "vmaf": 32.548
+  },
+  "cabac": {
+   "kbps": 1726.6,
+   "vmaf": 36.119
+  },
+  "dvmaf": 3.571,
+  "dkbps": -38.2
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5312.3,
+   "vmaf": 41.078
+  },
+  "cabac": {
+   "kbps": 5091.6,
+   "vmaf": 41.795
+  },
+  "dvmaf": 0.717,
+  "dkbps": -220.7
+ },
+ {
+  "clip": "porsche_sport",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 6928.2,
+   "vmaf": 41.806
+  },
+  "cabac": {
+   "kbps": 6660.0,
+   "vmaf": 42.22
+  },
+  "dvmaf": 0.414,
+  "dkbps": -268.2
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2261.6,
+   "vmaf": 21.747
+  },
+  "cabac": {
+   "kbps": 2159.8,
+   "vmaf": 24.299
+  },
+  "dvmaf": 2.552,
+  "dkbps": -101.8
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 6628.4,
+   "vmaf": 34.7
+  },
+  "cabac": {
+   "kbps": 6401.9,
+   "vmaf": 36.919
+  },
+  "dvmaf": 2.219,
+  "dkbps": -226.5
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 8796.5,
+   "vmaf": 37.38
+  },
+  "cabac": {
+   "kbps": 8415.5,
+   "vmaf": 38.785
+  },
+  "dvmaf": 1.405,
+  "dkbps": -381.0
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2241.4,
+   "vmaf": 20.892
+  },
+  "cabac": {
+   "kbps": 2105.6,
+   "vmaf": 23.658
+  },
+  "dvmaf": 2.766,
+  "dkbps": -135.8
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 6595.5,
+   "vmaf": 34.315
+  },
+  "cabac": {
+   "kbps": 6318.8,
+   "vmaf": 36.739
+  },
+  "dvmaf": 2.424,
+  "dkbps": -276.7
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 8722.9,
+   "vmaf": 37.139
+  },
+  "cabac": {
+   "kbps": 8298.1,
+   "vmaf": 38.727
+  },
+  "dvmaf": 1.588,
+  "dkbps": -424.8
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 2219.8,
+   "vmaf": 20.652
+  },
+  "cabac": {
+   "kbps": 2094.0,
+   "vmaf": 23.107
+  },
+  "dvmaf": 2.455,
+  "dkbps": -125.8
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 6448.9,
+   "vmaf": 34.024
+  },
+  "cabac": {
+   "kbps": 6230.3,
+   "vmaf": 36.402
+  },
+  "dvmaf": 2.378,
+  "dkbps": -218.6
+ },
+ {
+  "clip": "demons_souls",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 8504.4,
+   "vmaf": 36.819
+  },
+  "cabac": {
+   "kbps": 8208.6,
+   "vmaf": 38.459
+  },
+  "dvmaf": 1.64,
+  "dkbps": -295.8
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1841.4,
+   "vmaf": 76.178
+  },
+  "cabac": {
+   "kbps": 1770.4,
+   "vmaf": 76.429
+  },
+  "dvmaf": 0.251,
+  "dkbps": -71.0
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5114.8,
+   "vmaf": 77.255
+  },
+  "cabac": {
+   "kbps": 4809.6,
+   "vmaf": 77.267
+  },
+  "dvmaf": 0.012,
+  "dkbps": -305.2
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 6763.1,
+   "vmaf": 77.329
+  },
+  "cabac": {
+   "kbps": 6294.6,
+   "vmaf": 77.306
+  },
+  "dvmaf": -0.023,
+  "dkbps": -468.5
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1849.0,
+   "vmaf": 76.402
+  },
+  "cabac": {
+   "kbps": 1745.7,
+   "vmaf": 76.593
+  },
+  "dvmaf": 0.191,
+  "dkbps": -103.3
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5093.1,
+   "vmaf": 77.259
+  },
+  "cabac": {
+   "kbps": 4690.5,
+   "vmaf": 77.279
+  },
+  "dvmaf": 0.02,
+  "dkbps": -402.6
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 6738.0,
+   "vmaf": 77.339
+  },
+  "cabac": {
+   "kbps": 6221.8,
+   "vmaf": 77.349
+  },
+  "dvmaf": 0.01,
+  "dkbps": -516.2
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1696.3,
+   "vmaf": 76.263
+  },
+  "cabac": {
+   "kbps": 1583.1,
+   "vmaf": 76.473
+  },
+  "dvmaf": 0.21,
+  "dkbps": -113.2
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 4418.2,
+   "vmaf": 77.256
+  },
+  "cabac": {
+   "kbps": 4066.8,
+   "vmaf": 77.273
+  },
+  "dvmaf": 0.017,
+  "dkbps": -351.4
+ },
+ {
+  "clip": "alphago_movie",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 5863.6,
+   "vmaf": 77.353
+  },
+  "cabac": {
+   "kbps": 5370.0,
+   "vmaf": 77.349
+  },
+  "dvmaf": -0.004,
+  "dkbps": -493.6
+ },
+ {
+  "clip": "obs_new",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1885.7,
+   "vmaf": 39.301
+  },
+  "cabac": {
+   "kbps": 1878.9,
+   "vmaf": 39.379
+  },
+  "dvmaf": 0.078,
+  "dkbps": -6.8
+ },
+ {
+  "clip": "obs_new",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 6302.5,
+   "vmaf": 40.542
+  },
+  "cabac": {
+   "kbps": 6107.5,
+   "vmaf": 40.561
+  },
+  "dvmaf": 0.019,
+  "dkbps": -195.0
+ },
+ {
+  "clip": "obs_new",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 8137.9,
+   "vmaf": 40.642
+  },
+  "cabac": {
+   "kbps": 7504.1,
+   "vmaf": 40.657
+  },
+  "dvmaf": 0.015,
+  "dkbps": -633.8
+ },
+ {
+  "clip": "obs_new",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1964.4,
+   "vmaf": 39.447
+  },
+  "cabac": {
+   "kbps": 1940.7,
+   "vmaf": 39.547
+  },
+  "dvmaf": 0.1,
+  "dkbps": -23.7
+ },
+ {
+  "clip": "obs_new",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 6281.3,
+   "vmaf": 40.579
+  },
+  "cabac": {
+   "kbps": 6133.3,
+   "vmaf": 40.603
+  },
+  "dvmaf": 0.024,
+  "dkbps": -148.0
+ },
+ {
+  "clip": "obs_new",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7867.9,
+   "vmaf": 40.629
+  },
+  "cabac": {
+   "kbps": 7463.7,
+   "vmaf": 40.676
+  },
+  "dvmaf": 0.047,
+  "dkbps": -404.2
+ },
+ {
+  "clip": "obs_new",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1890.4,
+   "vmaf": 39.327
+  },
+  "cabac": {
+   "kbps": 1852.1,
+   "vmaf": 39.414
+  },
+  "dvmaf": 0.087,
+  "dkbps": -38.3
+ },
+ {
+  "clip": "obs_new",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5967.6,
+   "vmaf": 40.292
+  },
+  "cabac": {
+   "kbps": 5621.3,
+   "vmaf": 40.317
+  },
+  "dvmaf": 0.025,
+  "dkbps": -346.3
+ },
+ {
+  "clip": "obs_new",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7092.6,
+   "vmaf": 40.405
+  },
+  "cabac": {
+   "kbps": 7202.5,
+   "vmaf": 40.429
+  },
+  "dvmaf": 0.024,
+  "dkbps": 109.9
+ },
+ {
+  "clip": "native25",
+  "preset": "medium",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1894.8,
+   "vmaf": 36.725
+  },
+  "cabac": {
+   "kbps": 1843.1,
+   "vmaf": 37.759
+  },
+  "dvmaf": 1.034,
+  "dkbps": -51.7
+ },
+ {
+  "clip": "native25",
+  "preset": "medium",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5562.2,
+   "vmaf": 39.364
+  },
+  "cabac": {
+   "kbps": 5264.6,
+   "vmaf": 39.462
+  },
+  "dvmaf": 0.098,
+  "dkbps": -297.6
+ },
+ {
+  "clip": "native25",
+  "preset": "medium",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7355.2,
+   "vmaf": 39.556
+  },
+  "cabac": {
+   "kbps": 6980.2,
+   "vmaf": 39.604
+  },
+  "dvmaf": 0.048,
+  "dkbps": -375.0
+ },
+ {
+  "clip": "native25",
+  "preset": "slow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1930.1,
+   "vmaf": 36.77
+  },
+  "cabac": {
+   "kbps": 1862.9,
+   "vmaf": 37.831
+  },
+  "dvmaf": 1.061,
+  "dkbps": -67.2
+ },
+ {
+  "clip": "native25",
+  "preset": "slow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 5568.0,
+   "vmaf": 39.385
+  },
+  "cabac": {
+   "kbps": 5192.1,
+   "vmaf": 39.49
+  },
+  "dvmaf": 0.105,
+  "dkbps": -375.9
+ },
+ {
+  "clip": "native25",
+  "preset": "slow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 7377.9,
+   "vmaf": 39.568
+  },
+  "cabac": {
+   "kbps": 6947.6,
+   "vmaf": 39.627
+  },
+  "dvmaf": 0.059,
+  "dkbps": -430.3
+ },
+ {
+  "clip": "native25",
+  "preset": "veryslow",
+  "target": 2000,
+  "cavlc": {
+   "kbps": 1791.4,
+   "vmaf": 37.145
+  },
+  "cabac": {
+   "kbps": 1687.1,
+   "vmaf": 38.02
+  },
+  "dvmaf": 0.875,
+  "dkbps": -104.3
+ },
+ {
+  "clip": "native25",
+  "preset": "veryslow",
+  "target": 6000,
+  "cavlc": {
+   "kbps": 4910.7,
+   "vmaf": 39.439
+  },
+  "cabac": {
+   "kbps": 4778.0,
+   "vmaf": 39.545
+  },
+  "dvmaf": 0.106,
+  "dkbps": -132.7
+ },
+ {
+  "clip": "native25",
+  "preset": "veryslow",
+  "target": 8000,
+  "cavlc": {
+   "kbps": 6639.7,
+   "vmaf": 39.595
+  },
+  "cabac": {
+   "kbps": 6523.4,
+   "vmaf": 39.66
+  },
+  "dvmaf": 0.065,
+  "dkbps": -116.3
+ }
+]
