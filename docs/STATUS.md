@@ -17,6 +17,15 @@
   4. `ses_de2b47dc8ffeSPozCC0rkmoHSD` — speculative checkpoint/rollback and
      CPU-GPU hybrid feasibility → notes/SPECULATIVE_HYBRID.md
 
-No results yet. Parent-repo ABR fix agent (`ses_de2d0752affe5g5VSsbM249e0J`)
+Results in:
+- notes/FRAME_PARALLEL.md + results/frame_parallel_estimates.json: CABAC state
+  is per-slice; frame-parallelism capacity capped by recon slots (6/17);
+  N=8 -> 60-68 fps, N=16 -> 105-120 fps with ~3.8 GiB duplicated scratch;
+  rate feedback lag N frames makes serial bitstream identity impossible.
+- notes/CPU_CABAC_COST.md: CPU CABAC ~0.7 ms/frame in x264-slow, no
+  matched-rate VMAF gain on lab content.
+- results/slice_scale/: in progress (agent 3).
+
+Parent-repo ABR fix agent (`ses_de2d0752affe5g5VSsbM249e0J`)
 also still running; its result is needed before judging quality claims at
 target bitrate.
