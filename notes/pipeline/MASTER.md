@@ -4,7 +4,7 @@ Five parallel studies are running, one per encoder stage:
 
 | File | Stage | Status |
 |---|---|---|
-| `01_PREDICTION.md` | ME, subpel, refs, weighted pred, B-frames, lookahead, intra | running |
+| `01_PREDICTION.md` | ME, subpel, refs, weighted pred, B-frames, lookahead, intra | **DONE** — nothing clears gate; best are speed-only pyramid-confidence range (0.5-1.2 ms), intra RD-lite (<=+0.03 VMAF), weighted pred (0 on current corpora) |
 | `02_RD_TRANSFORM_QUANT.md` | mode RD, lambda, trellis/QNS, quantizer, 8x8 DCT | **DONE** — top ideas: VIF-proxy distortion λ (+0.2-0.5, 0.1-0.4 ms, no QP change so ABR cannot re-spend), subband QNS (+0.2-0.4, already prototyped and blocked), Cauchy bit estimator (+0.05-0.2). Realistic stack +0.4-0.9 VMAF, not enough alone |
 | `03_ENTROPY.md` | CAVLC/CABAC, bins, carry, EPB, parallel entropy | running |
 | `04_FILTERING_POSTPROCESS.md` | deblock, SAO-like, neural post-filter, VMAF vs genuine quality | running |
