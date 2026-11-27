@@ -1,0 +1,78 @@
+{
+  "note": "FRAME_PARALLEL.md arithmetic. Derived from measured numbers in the parent repo; no new GPU run was performed for this estimate.",
+  "date": "2026-11-27",
+  "inputs": {
+    "resolution": "1920x1080",
+    "mbWidth": 120,
+    "mbHeight": 68,
+    "macroblocksPerFrame": 8160,
+    "cabacSerialPerMbMicroseconds": 14.0,
+    "measuredIdrEntropyMs": 117.0,
+    "measuredSliceParallelCabacPFrameEntropyMs": [5.0, 7.0],
+    "measuredSliceParallelPrototypeLoopFps": 23.0,
+    "measuredCavlcLoopFps": [150.0, 160.0],
+    "measuredRingLoopFpsBeforeAfter": [119.0, [132.0, 140.0]],
+    "defaultReferencesSlow": 5,
+    "defaultReferencesVeryslow": 16,
+    "defaultGopFrames": [125, 300],
+    "gpu": "GTX 1660 SUPER"
+  },
+  "derived": {
+    "idrEntropySingleLaneMs": 114.24,
+    "idleCorrectionToMeasuredPercent": 2.4,
+    "pairedSliceMacroblocks": 240,
+    "pairedSliceSerialMs": 3.36,
+    "pairedSliceCount": 34,
+    "pairedSliceTotalLaneMs": 114.24,
+    "idrLaneBoundFps": {
+      "n8": 68.38,
+      "n16": 136.75
+    },
+    "nonEntropyMsPerFrame": [6.25, 8.33],
+    "nonEntropyBatchMs": {
+      "n8": [50.0, 66.7],
+      "n16": [100.0, 133.3]
+    },
+    "combinedWorkBoundFps": [65.0, 87.0],
+    "plausibleLoopFps": {
+      "n8": [60.0, 68.0],
+      "n16": [105.0, 120.0],
+      "caveat": "N=16 requires reconSlots >= 16; default slow preset only has references+1 = 6 recon slots."
+    }
+  },
+  "memoryBytesPerFrameWorstCaseIdrSlot": {
+    "reconSlot": 3133440,
+    "coefficients": 14100480,
+    "sliceScratch": 103436256,
+    "outputMirrorOfSliceScratch": 103436256,
+    "bodies": 25067520,
+    "filtered": 8452352,
+    "vectors": 783360,
+    "quarterLuma": 522240,
+    "total": 257626304,
+    "totalN8GiB": 1.92,
+    "totalN16GiB": 3.84
+  },
+  "capacity": {
+    "reconSlotsSlow": 6,
+    "reconSlotsVeryslow": 17,
+    "existingRingSlots": 3,
+    "existingDescriptorSetsSlowNonRing": 6,
+    "existingDescriptorSetsSlowRing": 18,
+    "hardCapWithoutDpbGrowth": "N <= references+1",
+    "concurrentCabacLanes": {
+      "n8": 272,
+      "n16": 544,
+      "note": "34 slices per frame; GTX 1660 SUPER has 22 SMs, so roughly 16 workgroup slots per SM is enough for N=8, N=16 needs two waves."
+    }
+  },
+  "citations": [
+    "docs/quality_baseline.md:168-184",
+    "docs/quality_baseline.md:75-89",
+    "docs/quality_baseline.md:117-127",
+    "docs/improvement_roadmap.md:18,52,77,84",
+    "src/presets.hpp:14-15,56-57,68,71,81",
+    "src/gpu.cpp:306-322,349-354,425-464,522-548,613,726-745",
+    "commit f69beff (ring + threaded preload)"
+  ]
+}
