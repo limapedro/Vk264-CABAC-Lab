@@ -8,7 +8,7 @@ Five parallel studies are running, one per encoder stage:
 | `02_RD_TRANSFORM_QUANT.md` | mode RD, lambda, trellis/QNS, quantizer, 8x8 DCT | running |
 | `03_ENTROPY.md` | CAVLC/CABAC, bins, carry, EPB, parallel entropy | running |
 | `04_FILTERING_POSTPROCESS.md` | deblock, SAO-like, neural post-filter, VMAF vs genuine quality | running |
-| `05_RATE_CONTROL.md` | ABR, qcomp, MB-tree, lookahead, offline QP planning | running |
+| `05_RATE_CONTROL.md` | ABR, qcomp, MB-tree, lookahead, offline QP planning | **DONE** — offline probe-calibrated QP plan ranked #1; cited −17 % to −32 % bitrate savings; estimated +2.9 VMAF game / +8.1 trailer, ~132-140 fps unchanged |
 
 This file will be replaced with the ranked cross-stage synthesis when all
 five report. Ground rules: every candidate needs (a) measured VMAF or BD-rate
