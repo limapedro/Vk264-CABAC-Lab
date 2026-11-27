@@ -28,6 +28,12 @@ Results in:
   option, not the next step.
 - notes/CPU_CABAC_COST.md: CPU CABAC ~0.7 ms/frame in x264-slow, no
   matched-rate VMAF gain on lab content.
+- notes/SPECULATIVE_HYBRID.md + results/speculative_conflicts.json: naive
+  checkpoint speculation DEAD (98.4% chunk conflicts); carry interface is
+  only 1 bit; exact chunk-summary + serial context prefix estimated <2 ms vs
+  117 ms measured IDR. **Evaluation: this is the most promising lab result —
+  CPU reference prototype launched (`ses_de2ab9d72ffeYls67vGOkgB590`) to
+  prove byte-exactness before any Vulkan work.**
 - results/slice_scale/: in progress (agent 3).
 
 Parent-repo ABR fix agent (`ses_de2d0752affe5g5VSsbM249e0J`)
