@@ -1,0 +1,83 @@
+{
+  "warzone_short": {
+    "fps": 60,
+    "encode_seconds": 1.95,
+    "stream_bytes": 3951351,
+    "total_bits": 31610808,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 34.698
+  },
+  "fortnite4k": {
+    "fps": 60,
+    "encode_seconds": 1.44,
+    "stream_bytes": 3707923,
+    "total_bits": 29663384,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 31.973
+  },
+  "yt_forza": {
+    "fps": 60,
+    "encode_seconds": 1.29,
+    "stream_bytes": 4428479,
+    "total_bits": 35427832,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 31.715
+  },
+  "yt_sport": {
+    "fps": 50,
+    "encode_seconds": 1.41,
+    "stream_bytes": 4492112,
+    "total_bits": 35936896,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 32.229
+  },
+  "porsche_sport": {
+    "fps": 60,
+    "encode_seconds": 1.07,
+    "stream_bytes": 3139225,
+    "total_bits": 25113800,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 27.337
+  },
+  "demons_souls": {
+    "fps": 60,
+    "encode_seconds": 1.62,
+    "stream_bytes": 3783613,
+    "total_bits": 30268904,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 34.256
+  },
+  "alphago_movie": {
+    "fps": 60,
+    "encode_seconds": 0.87,
+    "stream_bytes": 3387314,
+    "total_bits": 27098512,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 21.41
+  },
+  "obs_new": {
+    "fps": 60,
+    "encode_seconds": 0.97,
+    "stream_bytes": 4413417,
+    "total_bits": 35307336,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 29.102
+  },
+  "obs_capture": {
+    "fps": 60,
+    "encode_seconds": 0.85,
+    "stream_bytes": 3284627,
+    "total_bits": 26277016,
+    "frames_with_stats": 300,
+    "frames_with_packets": 300,
+    "qp_mean": 26.711
+  }
+}

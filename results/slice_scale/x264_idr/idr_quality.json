@@ -1,0 +1,63 @@
+{
+  "source": "E:\\__PROJECTS__\\Vk264\\build\\native1080_300.yuv",
+  "frames": 300,
+  "fps": 25,
+  "preset": "slow",
+  "bitrate_kbps": 6000,
+  "gop": 50,
+  "threads": 12,
+  "results": [
+    {
+      "name": "s1_ci0",
+      "slices": 1,
+      "constrained_intra": 0,
+      "params": "slices=1:constrained-intra=0",
+      "vmaf": 97.949485,
+      "bytes": 8644964,
+      "achieved_kbps": 5763.3,
+      "decoded_frames": "300",
+      "encode_wall_s": 6.39,
+      "encode_fps": 46.9,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i E:\\__PROJECTS__\\Vk264\\build\\native1080_300.yuv -frames:v 300 -an -c:v libx264 -preset slow -threads 12 -g 50 -sc_threshold 0 -b:v 6000k -maxrate 6000k -bufsize 12000k -x264-params slices=1:constrained-intra=0 -f h264 E:\\__PROJECTS__\\Vk264-CABAC-Lab\\results\\slice_scale\\x264_idr\\s1_ci0.h264"
+    },
+    {
+      "name": "s34_ci0",
+      "slices": 34,
+      "constrained_intra": 0,
+      "params": "slices=34:constrained-intra=0",
+      "vmaf": 97.735475,
+      "bytes": 8846917,
+      "achieved_kbps": 5897.9,
+      "decoded_frames": "300",
+      "encode_wall_s": 5.81,
+      "encode_fps": 51.7,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i E:\\__PROJECTS__\\Vk264\\build\\native1080_300.yuv -frames:v 300 -an -c:v libx264 -preset slow -threads 12 -g 50 -sc_threshold 0 -b:v 6000k -maxrate 6000k -bufsize 12000k -x264-params slices=34:constrained-intra=0 -f h264 E:\\__PROJECTS__\\Vk264-CABAC-Lab\\results\\slice_scale\\x264_idr\\s34_ci0.h264"
+    },
+    {
+      "name": "s68_ci0",
+      "slices": 68,
+      "constrained_intra": 0,
+      "params": "slices=68:constrained-intra=0",
+      "vmaf": 97.600774,
+      "bytes": 8993663,
+      "achieved_kbps": 5995.8,
+      "decoded_frames": "300",
+      "encode_wall_s": 5.75,
+      "encode_fps": 52.2,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i E:\\__PROJECTS__\\Vk264\\build\\native1080_300.yuv -frames:v 300 -an -c:v libx264 -preset slow -threads 12 -g 50 -sc_threshold 0 -b:v 6000k -maxrate 6000k -bufsize 12000k -x264-params slices=68:constrained-intra=0 -f h264 E:\\__PROJECTS__\\Vk264-CABAC-Lab\\results\\slice_scale\\x264_idr\\s68_ci0.h264"
+    },
+    {
+      "name": "s68_ci1",
+      "slices": 68,
+      "constrained_intra": 1,
+      "params": "slices=68:constrained-intra=1",
+      "vmaf": 97.472864,
+      "bytes": 8992904,
+      "achieved_kbps": 5995.3,
+      "decoded_frames": "300",
+      "encode_wall_s": 6.15,
+      "encode_fps": 48.8,
+      "command": "C:\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe -nostdin -hide_banner -loglevel error -y -f rawvideo -pixel_format yuv420p -video_size 1920x1080 -framerate 25 -i E:\\__PROJECTS__\\Vk264\\build\\native1080_300.yuv -frames:v 300 -an -c:v libx264 -preset slow -threads 12 -g 50 -sc_threshold 0 -b:v 6000k -maxrate 6000k -bufsize 12000k -x264-params slices=68:constrained-intra=1 -f h264 E:\\__PROJECTS__\\Vk264-CABAC-Lab\\results\\slice_scale\\x264_idr\\s68_ci1.h264"
+    }
+  ]
+}
