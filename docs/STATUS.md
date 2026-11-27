@@ -7,10 +7,16 @@
   - GPU CAVLC loop 150–160 fps on 1080p60 capture content, process ~100 fps.
   - Slice-parallel CABAC prototype: ~23 fps, 14 µs/MB, 117 ms/whole-frame IDR.
   - x264-slow on 12-core i5-12400F: 75–105 fps full encode at 1080p60.
-- Research agents to be launched:
-  1. Frame-parallel CABAC architecture + minimum DPB design.
-  2. WPP / row-wavefront H.264 legality and quality cost.
-  3. Slice-count scaling measurements (34 → 68 P slices, IDR split options).
-  4. Speculative checkpoint / CPU-GPU hybrid feasibility.
+- Research agents LAUNCHED 2026-11-27:
+  1. `ses_de2b4ea0effelwdNSVyxpVwyWP` — frame-parallel CABAC architecture +
+     minimum DPB design → notes/FRAME_PARALLEL.md
+  2. `ses_de2b4c5edffeV7Ph8HjDAMfKyQ` — WPP / row-wavefront H.264 legality
+     and measured quality cost → notes/WPP_H264.md
+  3. `ses_de2b4a168ffeINCaWiG28l3jWB` — slice-count scaling measurements
+     (1/2/4 rows per slice, IDR split legality) → notes/SLICE_SCALING.md
+  4. `ses_de2b47dc8ffeSPozCC0rkmoHSD` — speculative checkpoint/rollback and
+     CPU-GPU hybrid feasibility → notes/SPECULATIVE_HYBRID.md
 
-No results yet.
+No results yet. Parent-repo ABR fix agent (`ses_de2d0752affe5g5VSsbM249e0J`)
+also still running; its result is needed before judging quality claims at
+target bitrate.
