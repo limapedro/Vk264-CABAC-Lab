@@ -22,6 +22,10 @@ Results in:
   is per-slice; frame-parallelism capacity capped by recon slots (6/17);
   N=8 -> 60-68 fps, N=16 -> 105-120 fps with ~3.8 GiB duplicated scratch;
   rate feedback lag N frames makes serial bitstream identity impossible.
+  **Evaluation:** N=16 only marginally reaches the 100 fps gate, needs
+  ~3.8 GiB duplicated scratch + DPB growth, AND a working CABAC encoder
+  (which itself was measured at ~23 fps). Treat as a long-term architecture
+  option, not the next step.
 - notes/CPU_CABAC_COST.md: CPU CABAC ~0.7 ms/frame in x264-slow, no
   matched-rate VMAF gain on lab content.
 - results/slice_scale/: in progress (agent 3).
